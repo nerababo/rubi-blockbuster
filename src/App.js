@@ -1,29 +1,21 @@
 import React, { Component } from "react";
-import Movie from "./components/Movies/movie";
-import Show from "./components/Shows/Show";
+// import Movie from "./components/Movies/movie";
+// import Show from "./components/Shows/Show";
 import "./App.css";
-import { Nav } from "react-bootstrap";
+// import { Nav } from "react-bootstrap";
+import AppRouter from "./Routes/router";
+import { HashRouter as Router } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Nav>
-          <Nav.Item>
-            <Nav.Link href="/link-1">Movies</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">Tv Shows</Nav.Link>
-          </Nav.Item>
-        </Nav>
+      <Router>
+        <div className="App">
+          <h2>List of Top 10 Movies and Shows</h2>
 
-        <h2>List of Top 10 Movies and Shows</h2>
-        <form>
-          <input placeholder="search" />
-        </form>
-        <Movie className="movies" />
-        <Show className="movies" />
-      </div>
+          <AppRouter />
+        </div>
+      </Router>
     );
   }
 }

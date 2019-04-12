@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../../logo.svg";
+import Card from "react-bootstrap/Card";
+import "../cards.css";
 
 const PLACEHOLDER_IMG = logo;
 
@@ -10,12 +12,13 @@ const Shows = ({ show }) => {
       : `https://image.tmdb.org/t/p/w300${show.poster_path}`;
 
   return (
-    <div className="show">
-      <h2>{show.name}</h2>
-      <div>
-        <img width="200" alt={`Show: ${show.name}`} src={poster} />
-      </div>
-      <p>{show.overview}</p>
+    <div>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={poster} alt={`Show: ${show.name}`} />
+        <Card.Body>
+          <Card.Title>{show.name}</Card.Title>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

@@ -1,46 +1,46 @@
 .App {
   text-align: center;
 }
-.App-header {
-  background-color: #282c34;
-  height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px;
-  cursor: pointer;
-}
+
 .spinner {
   height: 80px;
   margin: auto;
 }
-.App-intro {
-  font-size: large;
-}
-/* new css for movie component */
+
+/* css for movies and shows */
 * {
   box-sizing: border-box;
 }
 .movies {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-flow: row wrap;
+  /* justify-content: space-around; */
 }
 .shows {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-flow: row wrap;
+  /* justify-content: space-around; */
 }
-.movies p,
+/* .movies p,
 .shows p {
-  text-align: left;
+  text-align: center;
+} */
+.movies h2,
+.shows h2 {
+  text-align: center;
+  font-size: 40px;
 }
+/* .movies h3,
+.shows h3 {
+  text-align: center;
+  font-size: 30px;
+  max-width: 300px;
+
+  
+} */
 
 .App-header h2 {
-  margin: 0;
+  margin: 10px;
 }
 .add-movies {
   text-align: center;
@@ -51,12 +51,20 @@
   margin: 0 10px 30px 10px;
 }
 .movie {
-  padding: 5px 25px 10px 25px;
+  margin: 10px;
+  padding: 0px 0px 5px 0px;
   max-width: 25%;
+  border: 1px solid #8c8c8c;
+}
+.movie h3 {
+  text-align: center;
+  font-size: 30px;
+  max-width: 300px;
 }
 .show {
-  padding: 5px 25px 10px 25px;
+  padding: 0px 25px 10px 25px;
   max-width: 25%;
+  border: 1px solid black;
 }
 .errorMessage {
   margin: auto;

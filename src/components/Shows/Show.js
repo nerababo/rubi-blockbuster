@@ -1,5 +1,6 @@
 import Shows from "./Shows";
 import React, { useReducer, useEffect } from "react";
+import "../cards.css";
 
 const SHOW_API_URL =
   "https://api.themoviedb.org/3/tv/top_rated?page=1&language=en-US&api_key=482d929cb4907d666170f441baa7bd20";
