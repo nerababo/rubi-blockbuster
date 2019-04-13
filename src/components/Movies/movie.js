@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import Movies from "./movies";
-import Search from "../Search/Search";
+//import Search from "../Search/Search";
 const MOVIE_API_URL =
   "https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=482d929cb4907d666170f441baa7bd20";
 const initialState = {
@@ -47,34 +47,33 @@ const Movie = () => {
       });
   }, []);
 
-  const search = searchValue => {
-    dispatch({
-      type: "FETCH_MOVIES_REQUEST"
-    });
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${searchValue}&language=en-US&api_key=482d929cb4907d666170f441baa7bd20`
-    )
-      .then(response => response.json())
-      .then(jsonResponse => {
-        if (jsonResponse.Response === "True") {
-          dispatch({
-            type: "FETCH_MOVIES_SUCCESS",
-            payload: jsonResponse.results
-          });
-        } else {
-          dispatch({
-            type: "FETCH_MOVIES_FAILURE",
-            error: jsonResponse.Error
-          });
-        }
-      });
-  };
+  // const search = searchValue => {
+  //   dispatch({
+  //     type: "FETCH_MOVIES_REQUEST"
+  //   });
+  //   fetch(
+  //     `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${searchValue}&language=en-US&api_key=482d929cb4907d666170f441baa7bd20`
+  //   )
+  //     .then(response => response.json())
+  //     .then(jsonResponse => {
+  //       if (jsonResponse.Response === "True") {
+  //         dispatch({
+  //           type: "FETCH_MOVIES_SUCCESS",
+  //           payload: jsonResponse.results
+  //         });
+  //       } else {
+  //         dispatch({
+  //           type: "FETCH_MOVIES_FAILURE",
+  //           error: jsonResponse.Error
+  //         });
+  //       }
+  //     });
+  // };
 
   const { movies, errorMessage, loading } = state;
 
   return (
     <div>
-      <Search search={search} />
       <div className="movies">
         {loading && !errorMessage ? (
           <span>loading... </span>

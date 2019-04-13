@@ -5,6 +5,7 @@ import "./App.css";
 // import { Nav } from "react-bootstrap";
 import AppRouter from "./Routes/router";
 import { HashRouter as Router } from "react-router-dom";
+import SearchD from "./components/SearchDva/SearchD";
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <h2>List of Top 10 Movies and Shows</h2>
-
+          {/* <SearchD /> */}
           <AppRouter />
         </div>
       </Router>
