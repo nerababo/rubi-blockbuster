@@ -4,8 +4,11 @@ import React, { Component } from "react";
 import "./App.css";
 // import { Nav } from "react-bootstrap";
 import AppRouter from "./Routes/router";
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import SearchD from "./components/SearchDva/SearchD";
+import { LinkContainer } from "react-router-bootstrap";
+
+// const SearchWithRouter = withRouter(SearchD);
 
 class App extends Component {
   render() {
@@ -13,7 +16,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <h2>List of Top 10 Movies and Shows</h2>
-          {/* <SearchD /> */}
+          <SearchD />
           <AppRouter />
         </div>
       </Router>

@@ -12,9 +12,9 @@ function AppRouter() {
   return (
     <Switch>
       <Route exact path="/" component={Show} />
-      <Route path="/Shows" component={Show} />
+      <Route path="/Home" component={Show} />
       <Route path="/Movies" component={Movie} />
-      <Route path="/SearchD" component={SearchD} />
+      {/* <Route path="/SearchD" component={SearchD} /> */}
       <Route component={NoMatch} />
     </Switch>
   );

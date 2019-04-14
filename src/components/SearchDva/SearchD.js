@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Suggestions from "./Suggestions";
+import Form from "react-bootstrap/Form";
 
 const API_KEY = "482d929cb4907d666170f441baa7bd20";
 const API_URL = "https://api.themoviedb.org/3/search/multi?";
@@ -10,6 +11,7 @@ class SearchD extends Component {
     query: "",
     results: []
   };
+  initialState = { ...this.state };
 
   getInfo = () => {
     axios
@@ -20,13 +22,13 @@ class SearchD extends Component {
       )
       .then(({ data }) => {
         this.setState({
-          results: data.results // MusicGraph returns an object named data,
-          // as does axios. So... data.data
+          results: data.results
         });
       });
   };
 
-  handleInputChange = () => {
+  handleInputChange = e => {
+    e.preventDefault();
     this.setState(
       {
         query: this.search.value
@@ -34,8 +36,15 @@ class SearchD extends Component {
       () => {
         if (this.state.query && this.state.query.length > 2) {
           if (this.state.query.length % 1 === 0) {
-            this.getInfo();
+            setTimeout(() => {
+              this.getInfo();
+            }, 1000);
           }
+        }
+        if (this.state.query.length < 3) {
+          setTimeout(() => {
+            this.setState(this.initialState);
+          }, 1000);
         }
       }
     );
@@ -43,14 +52,14 @@ class SearchD extends Component {
 
   render() {
     return (
-      <form>
+      <Form>
         <input
-          placeholder="Search for..."
+          placeholder="search"
           ref={input => (this.search = input)}
           onChange={this.handleInputChange}
         />
         <Suggestions results={this.state.results} />
-      </form>
+      </Form>
     );
   }
 }
