@@ -18,7 +18,7 @@ class SearchD extends Component {
       .get(
         `${API_URL}api_key=${API_KEY}&language=en-US&query=${
           this.state.query
-        }&page=1&include_adult=false&region=en-US`
+        }&page=1&include_adult=false&region=en-US&append_to_response=videos`
       )
       .then(({ data }) => {
         this.setState({
@@ -27,24 +27,20 @@ class SearchD extends Component {
       });
   };
 
-  handleInputChange = e => {
-    e.preventDefault();
+  handleInputChange = () => {
     this.setState(
       {
         query: this.search.value
       },
       () => {
-        if (this.state.query && this.state.query.length > 2) {
+        if (this.state.query && this.state.query.length >= 3) {
           if (this.state.query.length % 1 === 0) {
             setTimeout(() => {
               this.getInfo();
             }, 1000);
           }
-        }
-        if (this.state.query.length < 3) {
-          setTimeout(() => {
-            this.setState(this.initialState);
-          }, 1000);
+        } else {
+          this.setState(this.initialState);
         }
       }
     );
