@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../logo.svg";
 import Card from "react-bootstrap/Card";
-
+import { Link, withRouter } from "react-router-dom";
 const PLACEHOLDER_IMG = logo;
 
 const Movies = ({ movie }) => {
@@ -13,12 +13,19 @@ const Movies = ({ movie }) => {
   return (
     // <div className="movie">
     <div>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={poster} alt={`Movie: ${movie.title}`} />
-        <Card.Body>
-          <Card.Title>{movie.title}</Card.Title>
-        </Card.Body>
-      </Card>
+      <Link
+        to={{
+          pathname: `/DetailView/${movie.id}`,
+          state: { id: `${movie.id}` }
+        }}
+      >
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src={poster} alt={`Movie: ${movie.title}`} />
+          <Card.Body>
+            <Card.Title>{movie.title}</Card.Title>
+          </Card.Body>
+        </Card>
+      </Link>
     </div>
   );
 };

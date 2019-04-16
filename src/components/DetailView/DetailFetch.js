@@ -1,73 +1,49 @@
-import React, { useReducer, useEffect } from "react";
-import DetailView from "./DetailView";
+import React from "react";
+import logo from "../../logo.svg";
+import Card from "react-bootstrap/Card";
+import { withRouter } from "react-router-dom";
+const PLACEHOLDER_IMG = logo;
 
-const API_MEDIA_TYPE = match.params.media_type;
-const API_MEDIA_ID = match.params.id;
-const API_KEY = "482d929cb4907d666170f441baa7bd20";
-const API_URL = "https://api.themoviedb.org/3/";
-
-const initialState = {
-  loading: true,
-  multiSearch: [],
-  errorMessage: null
-};
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_DETAIL_REQUEST":
-      return {
-        ...state,
-        loading: true,
-        errorMessage: null
-      };
-    case "FETCH_DETAIL_SUCCESS":
-      return {
-        ...state,
-        loading: false,
-        multiSearch: action.payload
-      };
-    case "FETCH_DETAIL_FAILURE":
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.error
-      };
-    default:
-      return state;
-  }
-};
-
-const DetailFetch = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    fetch(
-      `${API_URL}/${API_MEDIA_TYPE}/${API_MEDIA_ID}/${API_KEY}&append_to_response=videos`
-    )
-      .then(response => response.json())
-      .then(jsonResponse => {
-        dispatch({
-          type: "FETCH_DETAIL_SUCCESS",
-          payload: jsonResponse.results
-        });
-      });
-  }, []);
-
-  const { multiSearch, errorMessage, loading } = state;
+const Result = ({ detail }) => {
+  const poster =
+    detail.poster_path === "N/A"
+      ? PLACEHOLDER_IMG
+      : `https://image.tmdb.org/t/p/w300${detail.poster_path}`;
 
   return (
     <div>
-      <div className="movies">
-        {loading && !errorMessage ? (
-          <span>loading... </span>
-        ) : errorMessage ? (
-          <div className="errorMessage">{errorMessage}</div>
-        ) : (
-          multiSearch.map((multi, index) => (
-            <DetailView key={`${index}-${multi.title}`} detail={multi} />
-          ))
-        )}
-      </div>
+      <Card style={{ width: "18rem" }} key={`{detail.id}-${detail.title}`}>
+        <Card.Img variant="top" src={poster} alt={`Title: ${detail.title}`} />
+        <Card.Body>
+          <Card.Title>{detail.title}</Card.Title>
+          <Card.Text>{detail.overview}</Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
-export default DetailFetch;
+
+// const Suggestions = props => {
+//   const options = props.results.map(r => (
+//     <Link to={`/DetailView/${r.id}`}>
+//       <Card style={{ width: "18rem" }}>
+//         <Card.Img
+//           variant="top"
+//           src={`https://image.tmdb.org/t/p/w300/${r.poster_path}`}
+//           alt={`Movie: ${r.original_name}`}
+//         />
+//         <Card.Body>
+//           <Card.Title>{r.original_name}</Card.Title>
+//         </Card.Body>
+//       </Card>
+//     </Link>
+//   ));
+
+//   return (
+//     <div>
+//       <ul>{options}</ul>
+//     </div>
+//   );
+// };
+
+export default withRouter(Result);

@@ -14,8 +14,9 @@ function AppRouter() {
       <Route exact path="/" component={Show} />
       <Route path="/Home" component={Show} />
       <Route path="/Movies" component={Movie} />
+
+      <Route path="/DetailView/:id" component={DetailView} />
       <Route path="/DetailView/" component={DetailView} />
-      <Route path="/DetailView/:id" component={DetailView} />} />
       <Route component={NoMatch} />
     </Switch>
   );
