@@ -21,23 +21,12 @@
   flex-flow: row wrap;
   /* justify-content: space-around; */
 }
-/* .movies p,
-.shows p {
-  text-align: center;
-} */
+
 .movies h2,
 .shows h2 {
   text-align: center;
   font-size: 40px;
 }
-/* .movies h3,
-.shows h3 {
-  text-align: center;
-  font-size: 30px;
-  max-width: 300px;
-
-  
-} */
 
 .App-header h2 {
   margin: 10px;
@@ -78,23 +67,7 @@
   justify-content: center;
   margin-top: 10px;
 }
-input[type="submit"] {
-  padding: 5px;
-  background-color: transparent;
-  color: black;
-  border: 1px solid black;
-  width: 80px;
-  margin-left: 5px;
-  cursor: pointer;
-}
-input[type="submit"]:hover {
-  background-color: #282c34;
-  color: antiquewhite;
-}
-.search > input[type="text"] {
-  width: 40%;
-  min-width: 170px;
-}
+
 @media screen and (min-width: 694px) and (max-width: 915px) {
   .movie {
     max-width: 33%;
