@@ -2,21 +2,16 @@ import React, { useReducer, useEffect } from "react";
 import Result from "./DetailFetch";
 import { withRouter } from "react-router-dom";
 
-const { match } = match.params.id;
-
-console.log(match);
-// const ApiId = Number(id, 10);
-// console.log(ApiId);
-// const arrPara = { id: "sample" };
-// arrPara[paraemetri];
-
-//   console.log("match", match);
+const { id } = ({ match }) => match.params.id;
+console.log(id);
+const AppId = Number(id);
+console.log(AppId);
 
 // };
 
 const API_KEY = "482d929cb4907d666170f441baa7bd20";
 const API_URL = "https://api.themoviedb.org/3/search/multi?";
-const FETCH_API_URL = `${API_URL}api_key=${API_KEY}&language=en-US&query=${id}&page=1&include_adult=false&region=en-US`;
+const FETCH_API_URL = `${API_URL}api_key=${API_KEY}&language=en-US&query=${AppId}&page=1&include_adult=false&region=en-US`;
 
 const initialState = {
   loading: true,
@@ -82,4 +77,4 @@ const Details = () => {
   );
 };
 
-export default withRouter(Details);
+export default Details;
